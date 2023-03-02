@@ -19,26 +19,27 @@ def save_cookies(bot):
     print('Cookies Saved.')
 
 
-class BOT ():
+class Undetected_BOT ():  # using ud_chromedriver
     running_status = False
 
     def __init__(self) -> None:
         pass
 
-    def Start(self):
+    def Start(self, headless=False):
         print('...')
-        # options = Options()
         options = uc.ChromeOptions()
 
-        # options.headless=True
-        # options.add_argument('--headless')
-        # cur_path = pathlib.Path(__file__).parent.resolve()
+        if headless:
+            options.headless = True
+            options.add_argument('--headless')
 
+        # cur_path = pathlib.Path(__file__).parent.resolve()
+        # following lines are not  for undetected_chromedriver
         # options.add_argument("--incognito")
         # options.add_experimental_option('excludeSwitches', ['enable-logging'])
         # self.driver = webdriver.Chrome(options=options , executable_path='chromedriver.exe')
-        # to get rid of save password popup
 
+        # to get rid of save password popup
         options.add_argument("--password-store=basic")
         options.add_experimental_option(
             "prefs",
@@ -104,7 +105,7 @@ class BOT ():
 
 
 if __name__ == '__main__':
-    bot = BOT()
+    bot = Undetected_BOT()
     bot.start_browser()
     bot.quit()
     bot = None
